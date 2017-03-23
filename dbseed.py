@@ -5,7 +5,7 @@ from psycopg2.extras import RealDictCursor
 
 
 hostname = 'localhost'
-username = 'postgres'
+username = 'postgres' #postgres 
 password = 'secret'
 database = 'test'
 
@@ -20,7 +20,7 @@ cursor = connection.cursor()#cursor_factory=RealDictCursor)
 # cursor.execute('CREATE DATABASE test;')
 
 cursor.execute('''
-	DROP TABLE IF EXISTS procedure_type;
+	DROP TABLE IF EXISTS procedure_type CASCADE;
 ''')
 
 cursor.execute('''
@@ -32,7 +32,7 @@ cursor.execute('''
 ''')
 
 cursor.execute('''
-	DROP TABLE IF EXISTS facilities;
+	DROP TABLE IF EXISTS facilities CASCADE;
 ''')
 
 cursor.execute('''
@@ -41,12 +41,13 @@ cursor.execute('''
 	name TEXT,
 	address TEXT,
 	image BYTEA,
+	rating DECIMAL,
 	reviews TEXT
 	);
 ''')
 
 cursor.execute('''
-	DROP TABLE IF EXISTS geolcations;
+	DROP TABLE IF EXISTS geolocations CASCADE;
 ''')
 
 cursor.execute('''
@@ -60,7 +61,7 @@ cursor.execute('''
 ''')
 
 cursor.execute('''
-	DROP TABLE IF EXISTS procedures;
+	DROP TABLE IF EXISTS procedures CASCADE;
 	''')
 
 cursor.execute('''
@@ -73,7 +74,6 @@ cursor.execute('''
 	FOREIGN KEY (id_facilities) REFERENCES facilities(id)
 	);
 ''')
-
 
 
 connection.commit()
