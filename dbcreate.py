@@ -5,7 +5,7 @@ from psycopg2.extras import RealDictCursor
 
 
 hostname = 'localhost'
-username = 'postgres' #postgres 
+username = 'postgres' #postgres is the owner in psql 
 password = 'secret'
 database = 'test'
 
@@ -13,9 +13,9 @@ database = 'test'
 connection = psycopg2.connect(host=hostname, user=username, password=password, dbname=database)
 
 #create cursor factory
-# connection.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
+connection.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
 
-cursor = connection.cursor()#cursor_factory=RealDictCursor)
+cursor = connection.cursor(cursor_factory=RealDictCursor)
 
 # cursor.execute('CREATE DATABASE test;')
 
