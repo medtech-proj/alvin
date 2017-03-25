@@ -4,10 +4,10 @@ import psycopg2
 from psycopg2.extras import RealDictCursor
 import pandas as pd
 import numpy as np
-import json
+
 
 hostname = 'localhost'
-username = 'vince' #postgres is the owner in psql 
+username = 'postgres' #postgres is the owner in psql 
 password = 'secret'
 database = 'test'
 
@@ -20,12 +20,14 @@ connection.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
 cursor = connection.cursor(cursor_factory=RealDictCursor)
 
 # cursor.execute('CREATE DATABASE test;')
+
+#higher order function, replaces np.nan with ''
 def replace_nan(default):
 	def _replace(value):
 		return default if value is np.nan else value
 	return _replace
 
-
+#pandas reads csv, calls replace
 df = pd.read_csv(
 	filepath_or_buffer='./combined_seed_tables.csv',
 	converters={
@@ -33,59 +35,16 @@ df = pd.read_csv(
 		"address": replace_nan(''),
 		"image":replace_nan(''),
 		"rating": replace_nan(0),
-		"reviews": replace_nan(0)
+		"reviews": replace_nan(0),
+		"cpt_code": replace_nan(0),
+		"description": replace_nan(''),
+		"tot_price": replace_nan(0)
 	}
 )
 
-# names=df['name']
-# addresses=df['address']
-# images=df['image']
-# ratings=df['rating']
-# reviews=df['reviews']
-
-# thelist = []
-# name_tuples = [i for i in names]
-# address_tuples = [i for i in addresses]
-# image_tuples = [i for i in images]
-# rating_tuples = [i for i in ratings]
-# review_tuples = [i for i in reviews]
-
-# print(name_tuples)
-# thelist.append(name_tuples)
-# print(thelist)
-
-
-# address_tuples = []
-# for a,b,c,d,e in zip(names, addresses, images, ratings, reviews):
-# 	cursor.execute('''
-# 		INSERT INTO 
-# 		facilities (name, address, images, rating, reviews) 
-# 		VALUES
-# 		(%(a)s,%(b)s,%(c)s,%(d)s,%(e)s);
-# 	''', {"a":a,"b":b,"c":c,"d":d,"e":e})
-
-
-# cursor.executemany('''
-# 		INSERT INTO 
-# 		facilities (name, address, image, rating, reviews) 
-# 		VALUES
-# 		(%s,%s,%s,%s,%s);
-# 	''', 
-# 	(
-# 		(
-# 			name, 
-# 			address, 
-# 			('' if np.nan is image else image), 
-# 			(0 if np.nan is rating else float(rating)), 
-# 			(0 if np.nan is reviews else float(reviews))
-# 		) 
-# 		for 
-# 			name, address, image, rating, reviews
-# 		in 
-# 			zip(names, addresses, images, ratings, reviews)
-# 	)
-# )
-
+#connect to psql - (%(col)s) formatting specific to psql
+#not using ORM 
+#numpy converting column and values into dict
 cursor.executemany('''
 		INSERT INTO 
 		facilities (name, address, image, rating, reviews) 
@@ -95,18 +54,23 @@ cursor.executemany('''
 	df.to_dict(orient="records")
 )
 
+cursor.executemany('''
+		INSERT INTO 
+		procedure_type (cpt_code, description) 
+		VALUES
+		(%(cpt_code)s,%(description)s);
+	''', 
+	df.to_dict(orient="records")
+)
 
-
-
-
-cpt_codes=df['cpt_code']
-descriptions=df['description']
-
-
-
-
-
-tot_prices=df['tot_price']
+cursor.executemany('''
+		INSERT INTO 
+		procedures (tot_price) 
+		VALUES
+		(%(tot_price)s);
+	''', 
+	df.to_dict(orient="records")
+)
 
 
 connection.commit()
