@@ -47,3 +47,40 @@
 # 			zip(names, addresses, images, ratings, reviews)
 # 	)
 # )
+
+
+
+
+
+
+# #higher order function, replaces df Nans with ''
+# def replace_nan(default):
+# 	def _replace(value):
+# 		return default if value is np.nan else value
+# 	return _replace
+
+# #pandas reads csv, calls replace
+# df = pd.read_csv(
+# 	filepath_or_buffer='./combined_seed_tables.csv',
+# 	converters={
+# 		"name": replace_nan(''),
+# 		"address": replace_nan(''),
+# 		"image":replace_nan(''),
+# 		"rating": replace_nan(0),
+# 		"reviews": replace_nan(0),
+# 		"cpt_code": replace_nan(0),
+# 		"description": replace_nan(''),
+# 		"tot_price": replace_nan(0)
+# 	}
+# )
+
+# names=df['name']
+# addresses=df['address']
+# images=df['image']
+# ratings=df['rating']
+# reviews=df['reviews']
+
+
+#connect to psql - (%(col)s) formatting specific to psql
+#not using ORM 
+#numpy converting column and values into dict
