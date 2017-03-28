@@ -1,16 +1,16 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 import psycopg2
 from psycopg2.extras import RealDictCursor
 
 
 hostname = 'localhost'
-username = 'postgres' #postgres is the owner in psql 
+username = 'Lisa' #postgres is the owner in psql 
 password = 'secret'
 database = 'test'
 
 #creates db
-connection = psycopg2.connect(host=hostname, user=username, password=password, dbname=database)
+connection = psycopg2.connect(dbname=database)
 
 #create cursor factory
 connection.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
@@ -26,7 +26,7 @@ cursor.execute('''
 cursor.execute('''
 	CREATE TABLE procedure_type (
 	id SERIAL PRIMARY KEY,
-	cpt_code VARCHAR,
+	cpt_code INTEGER,
 	description TEXT
 	);
 ''')
@@ -40,9 +40,9 @@ cursor.execute('''
 	id SERIAL PRIMARY KEY,
 	name TEXT,
 	address TEXT,
-	image BYTEA,
+	image TEXT,
 	rating DECIMAL,
-	reviews TEXT
+	reviews INTEGER
 	);
 ''')
 
@@ -67,13 +67,26 @@ cursor.execute('''
 cursor.execute('''
 	CREATE TABLE procedures (
 	id SERIAL PRIMARY KEY,
-	id_procedure_types INTEGER,
-	id_facilities INTEGER,
-	tot_price INTEGER,
-	FOREIGN KEY (id_procedure_types) REFERENCES procedure_type(id),
-	FOREIGN KEY (id_facilities) REFERENCES facilities(id)
+	cpt_code INTEGER,
+	facility_name TEXT,
+	tot_price INTEGER
 	);
 ''')
+
+# cursor.execute('''
+# 	DROP TABLE IF EXISTS procedures CASCADE;
+# 	''')
+
+# cursor.execute('''
+# 	CREATE TABLE procedures (
+# 	id SERIAL PRIMARY KEY,
+# 	id_procedure_types INTEGER,
+# 	id_facilities INTEGER,
+# 	tot_price INTEGER,
+# 	FOREIGN KEY (id_procedure_types) REFERENCES procedure_type(id),
+# 	FOREIGN KEY (id_facilities) REFERENCES facilities(id)
+# 	);
+# ''')
 
 
 connection.commit()
