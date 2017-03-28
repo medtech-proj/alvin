@@ -1,7 +1,7 @@
 import pandas as pd
 import psycopg2 as pg
 import geocoder
-import googlemap
+import googlemaps
 import geopandas
 import geojson
 from shapely.geometry import Point
@@ -13,15 +13,16 @@ from geojsonio import display
 connection = pg.connect("dbname=test")
 facilities_df = pd.read_sql_query('SELECT * FROM "facilities"',connection)
 
+#gets api key from secret file
+my_key=open('secr', 'r').read()
 
-gmaps = googlemaps.Client(key="my_key")
+#accesses googlemaps API
+gmaps = googlemaps.Client(key=my_key)
 
 
-
+#getting lat/long from geocoder api
 facilities_df['latitude'] = facilities_df['address'].apply(geocoder.google).apply(lambda x: x.lat)
-facilities_df['longitude']=facilities_df['address'].apply(geocoder.google).apply(lambda x: x.lng)
-
-
+facilities_df['longitude'] = facilities_df['address'].apply(geocoder.google).apply(lambda x: x.lng)
 
 
 # converts lat and long points to coordinate point data type

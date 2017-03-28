@@ -7,10 +7,10 @@ from shapely.geometry import Point
 from geopandas import GeoDataFrame
 from geojson import Feature, FeatureCollection
 from geojsonio import display
-#https://github.com/lesley2958/data-blog/tree/master/NYC%20alvin
+#https://github.com/lesley2958/data-blog/tree/master/NYC
 
 
-
+my_key=open('secr', 'r').read()
 
 # authentication initialized, different syntax for each API, read API doc
 gmaps = googlemaps.Client(key='my_key')
