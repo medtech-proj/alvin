@@ -33,15 +33,13 @@ geo = [Point(xy) for xy in zip(facilities_df.longitude, facilities_df.latitude)]
 crs = {'init': 'epsg:4326'}
 
 #gets facilities place name from csv/df
-site=facilities_df['name']
+site = list(facilities_df['name'])
+address = list(facilities_df['address'])
+rating = list(facilities_df['rating'])
+reviews = list(facilities_df['reviews'])
 
 #geodataframe parameters in documentation
 geo_df = GeoDataFrame(site, crs=crs, geometry=geo) 
-# fixes json formatting and puts it back into geodataframe
-#listcomprehension to serialize json - a list of the dict
-# would not need these two lines if json was correct format
-l1 = [geojson.dumps(i, sort_keys=True) for i in geo] 
-geo_df = GeoDataFrame(l1, crs=crs, geometry=geo) 
 
 # displays to geojsonio
 display(geo_df.to_json())
