@@ -24,7 +24,7 @@ cursor.execute('''
 ''')
 
 cursor.execute('''
-	CREATE TABLE procedure_type (
+	CREATE TABLE procedure_types (
 	id SERIAL PRIMARY KEY,
 	cpt_code INTEGER,
 	description TEXT
@@ -60,6 +60,7 @@ cursor.execute('''
 	);
 ''')
 
+
 cursor.execute('''
 	DROP TABLE IF EXISTS procedures CASCADE;
 	''')
@@ -67,26 +68,13 @@ cursor.execute('''
 cursor.execute('''
 	CREATE TABLE procedures (
 	id SERIAL PRIMARY KEY,
-	cpt_code INTEGER,
-	facility_name TEXT,
-	tot_price INTEGER
+	id_procedure_types INTEGER,
+	id_facilities INTEGER,
+	tot_price INTEGER,
+	FOREIGN KEY (id_procedure_types) REFERENCES procedure_types(id),
+	FOREIGN KEY (id_facilities) REFERENCES facilities(id)
 	);
 ''')
-
-# cursor.execute('''
-# 	DROP TABLE IF EXISTS procedures CASCADE;
-# 	''')
-
-# cursor.execute('''
-# 	CREATE TABLE procedures (
-# 	id SERIAL PRIMARY KEY,
-# 	id_procedure_types INTEGER,
-# 	id_facilities INTEGER,
-# 	tot_price INTEGER,
-# 	FOREIGN KEY (id_procedure_types) REFERENCES procedure_type(id),
-# 	FOREIGN KEY (id_facilities) REFERENCES facilities(id)
-# 	);
-# ''')
 
 
 connection.commit()
