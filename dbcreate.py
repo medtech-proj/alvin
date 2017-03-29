@@ -20,7 +20,7 @@ cursor = connection.cursor(cursor_factory=RealDictCursor)
 # cursor.execute('CREATE DATABASE test;')
 
 cursor.execute('''
-	DROP TABLE IF EXISTS procedure_type CASCADE;
+	DROP TABLE IF EXISTS procedure_types CASCADE;
 ''')
 
 cursor.execute('''
