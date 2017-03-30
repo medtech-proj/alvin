@@ -1,0 +1,19 @@
+body{
+	border:solid pink;
+}
+
+#menu-alvin-main-menu{
+	display:flex;
+}
+
+.inner{
+	background-color: gray;
+	color:white;
+}
+
+ul{
+	list-style: none;
+}
+li{
+	margin:1%;
+}
