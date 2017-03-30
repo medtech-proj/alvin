@@ -1,5 +1,5 @@
 from flask import Flask, redirect, render_template, session, request, url_for
-# import model
+# import alvin_geos
 
 app = Flask(__name__)
 
@@ -12,13 +12,14 @@ def show_healthmap():
 	# return render_template("healthmap.html")
 	return render_template("map.html")
 
-@app.route("/procedure/<name>")
-def get_hos_name():
-	data=query(name)
-	# return httpResponse(json.dumps(data))
-	return json.dumps(data)
+# @app.route("/procedure/<name>")
+# def get_hos_name():
+# 	data=query(name)
+# 	# return httpResponse(json.dumps(data))
+# 	return json.dumps(data)
+
 
 
 
 if __name__ == "__main__":
-	app.run(host="127.0.0.1", port=5000)
+	app.run(host="127.0.0.1", debug=True, port=5000)

@@ -6,6 +6,12 @@ JOIN procedure_type
 ON procedure_type.cpt_code = facilities.cpt_code) 
 
 
+<p>geojson map</p>
+    <script src="https://gist.github.com/lgibson212/54c45fdee464ad0fa6d707ac8626c96d.js"></script>
+
+<p>gmaps, budapest</p>
+	<iframe src="https://www.google.com/maps/d/u/0/embed?mid=161fwYY69xR1ndyz-nq8p8PATZhM" width="640" height="480"></iframe>
+
 
 # names=df['name']
 # addresses=df['address']
