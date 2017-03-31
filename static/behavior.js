@@ -30,7 +30,7 @@
 //     return false;
 //   }
 // });
-import {IFFE} from './gmaps.js'
+import {IIFE} from './gmaps.js'
 
 
 document.getElementById('searchSub').addEventListener('click', function(event){
@@ -64,7 +64,7 @@ const searchBar = function(name){
 
 
 var getMap = function(dataObj){
-	
+	let map = IIFE()
 
 }
 

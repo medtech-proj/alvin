@@ -24,10 +24,15 @@ def get_hosp_name(name):
 		x = obj['name']
 		address = obj['address']
 		description = obj['description']
+		cpt_code = obj['cpt_code']
 		tot_price = obj['tot_price']
 		image = obj['image']
 		rating = obj['rating']
 		reviews = obj['reviews']
+		latitude = obj['latitude']
+		longitude = obj['longitude']
+
+
 
 
 		print(x)

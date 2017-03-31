@@ -47,5 +47,14 @@ with open("procedures.csv") as procedures_data:
 			(%s,%s,%s);
 		''', row)
 
+with open("geolocations.csv") as geolocations_data:
+	f = csv.reader(geolocations_data)
+	for row in f:
+		cursor.execute('''
+			INSERT INTO
+			geolocations (id_facilities, latitude, longitude)
+			VALUES
+			(%s,%s,%s);
+			''', row)
 
 connection.close()
