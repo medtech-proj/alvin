@@ -27,11 +27,11 @@ li{
 
 .input[type=text] {
     width: 200px;
-    -webkit-transition: width 0.4s ease-in-out;
-    transition: width 0.4s ease-in-out;
+   /* -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;*/
 }
 
 /* When the input field gets focus, change its width to 100% */
-input[type=text]:focus {
+/*input[type=text]:focus {
     width: 75%;
-}
+}*/

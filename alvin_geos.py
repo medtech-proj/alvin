@@ -40,6 +40,7 @@ reviews = list(facilities_df['reviews'])
 
 #geodataframe parameters in documentation
 geo_df = GeoDataFrame(site, crs=crs, geometry=geo) 
+print(geo_df)
 
 # displays to geojsonio
 display(geo_df.to_json())

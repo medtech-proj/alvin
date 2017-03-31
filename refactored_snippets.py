@@ -6,6 +6,18 @@ JOIN procedure_type
 ON procedure_type.cpt_code = facilities.cpt_code) 
 
 
+
+
+# Use bytearray:
+
+with open("img.png", "rb") as imageFile:
+  f = imageFile.read()
+  b = bytearray(f)
+
+print b[0]
+
+
+
 <p>geojson map</p>
     <script src="https://gist.github.com/lgibson212/54c45fdee464ad0fa6d707ac8626c96d.js"></script>
 

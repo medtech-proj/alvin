@@ -35,9 +35,10 @@ def get_hosp_name(name):
 
 	# print(data[0]['name'])
 	# print(type(data))
-	# result = {'result':str(data)}
+	result = {'result':str(data)}
 
-	# return json.dumps(result)
+	return json.dumps(result)
+
 
 
 
