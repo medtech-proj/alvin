@@ -21,11 +21,12 @@ def get_geojson(data):
 				"coordinates": [obj["longitude"], obj['latitude']]
 				},
 			"id": str(obj['id']),
-			"properties": {
-				"marker-color": "#7e7e7e",
-				"marker-size": "medium",
-				"marker-symbol": ""
-				},
+			# "properties": {
+			# 	"marker-color": "#7e7e7e",
+			# 	"marker-size": "medium",
+			# 	"marker-symbol": "",
+			# 	"object": "hi"
+			# 	},
 				"type": "Feature"
 			})
 			
@@ -33,6 +34,27 @@ def get_geojson(data):
 
 	return geo_json
 	# geo_json['features'].append(obj)
+
+
+def get_json_details(data):
+	details = []
+	for i in data:
+		details.append(
+			{"name":i['name'],
+			"lng": i["longitude"],
+			"lat": i["latitude"],
+			"price": i["tot_price"],
+			"address": i['address'],
+			"description":i['description'],
+			"cpt_code":i['cpt_code'],
+			"image":i['image'],
+			"rating":i['rating'],
+			"reviews":i['reviews']
+			}
+		)
+	return details
+
+	
 
 
 
@@ -63,9 +85,10 @@ def get_data(name):
 
 	# print(data[0]['name'])
 	# print(type(data))
-	geo_json=get_geojson(data)
-	return json.dumps(geo_json)
-
+	# geo_json=get_json_details(data)
+	
+	return json.dumps(data)
+	# this is the responseText on javascript
 
 
 
