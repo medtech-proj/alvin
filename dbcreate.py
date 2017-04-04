@@ -46,19 +46,19 @@ cursor.execute('''
 	);
 ''')
 
-# cursor.execute('''
-# 	DROP TABLE IF EXISTS geolocations CASCADE;
-# ''')
+cursor.execute('''
+	DROP TABLE IF EXISTS geolocations CASCADE;
+''')
 
-# cursor.execute('''
-# 	CREATE TABLE geolocations (
-# 	id SERIAL PRIMARY KEY,
-# 	id_facilities INTEGER,
-# 	latitude VARCHAR,
-# 	longitude VARCHAR,
-# 	FOREIGN KEY (id_facilities) REFERENCES facilities(id)
-# 	);
-# ''')
+cursor.execute('''
+	CREATE TABLE geolocations (
+	id SERIAL PRIMARY KEY,
+	id_facilities INTEGER,
+	latitude VARCHAR,
+	longitude VARCHAR,
+	FOREIGN KEY (id_facilities) REFERENCES facilities(id)
+	);
+''')
 
 
 cursor.execute('''

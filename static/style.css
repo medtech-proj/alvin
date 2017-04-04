@@ -20,16 +20,18 @@ li{
 
 #map{
 	height: 400px;
-	width: 100%;
+	width: 75%;
+	margin: auto;
+	margin-bottom: 10px;
 }
 
 .input[type=text] {
-    width: 130px;
-    -webkit-transition: width 0.4s ease-in-out;
-    transition: width 0.4s ease-in-out;
+    width: 200px;
+   /* -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;*/
 }
 
 /* When the input field gets focus, change its width to 100% */
-input[type=text]:focus {
-    width: 80%;
-}
+/*input[type=text]:focus {
+    width: 75%;
+}*/
