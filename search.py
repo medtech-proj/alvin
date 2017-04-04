@@ -25,7 +25,7 @@ def get_procedure_info(procedure):
 	# print(procedure)
 	data = str(procedure)+'%'
 	cursor.execute('''
-		SELECT latitude, longitude, name, address, description, cpt_code, tot_price, image, rating, reviews
+		SELECT procedures.id, latitude, longitude, name, address, description, cpt_code, tot_price, image, rating, reviews
 		FROM procedures 
 
 		JOIN procedure_types
@@ -41,14 +41,14 @@ def get_procedure_info(procedure):
 	''', (data,))
 	# print(data)
 	query = cursor.fetchall()
-	print(query)
+	# print(query)
 	return query
 	# return query
-	
+	connection.close()
 
 # get_procedure_info('CT')
 
 
-connection.close()	
+		
 
 
