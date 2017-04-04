@@ -41,7 +41,7 @@ cursor.execute('''
 	name TEXT,
 	address TEXT,
 	image TEXT,
-	rating DECIMAL,
+	rating REAL,
 	reviews INTEGER
 	);
 ''')
@@ -54,8 +54,8 @@ cursor.execute('''
 	CREATE TABLE geolocations (
 	id SERIAL PRIMARY KEY,
 	id_facilities INTEGER,
-	latitude VARCHAR,
-	longitude VARCHAR,
+	latitude REAL,
+	longitude REAL,
 	FOREIGN KEY (id_facilities) REFERENCES facilities(id)
 	);
 ''')

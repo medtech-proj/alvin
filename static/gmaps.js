@@ -11,9 +11,22 @@ function IIFE(){
 			// center: {lat: -10, lng: -10}
 		});
 
+		map.data.addGeoJson(data)
+
+		
+	// function updateMap() {
+	// 	var map = new google.maps.Map(mapdiv, {
+	// 		zoom: 10,
+	// 		center: {lat: 40.78, lng: -74}
+
+
+		
+	// }
+
 
 		// NOTE: This uses cross-domain XHR, and may not work on older browsers.
 		// map.data.loadGeoJson('../static/map.geojson');
+
 
 		//getting user geolocation- requires consent
 		// var infoWindow = new google.maps.InfoWindow({map: map});
@@ -39,13 +52,15 @@ function IIFE(){
 	};
 
 	function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-		// infoWindow.setPosition(pos);
+		infoWindow.setPosition(pos);
 		infoWindow.setContent(browserHasGeolocation ?
 	  	'Error: The Geolocation service failed.' :
 	  	'Error: Your browser doesn\'t support geolocation.');
 	}
-
 }
+
+
+
 // {
 //   "featureType": "road"
 // }

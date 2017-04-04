@@ -1,57 +1,58 @@
+console.log("js connected");
+var mapdiv= document.getElementById('map');
+	console.log(mapdiv);
+
+	function initMap(data) {
+
+		var map = new google.maps.Map(mapdiv, {
+			zoom: 12,
+			center: {lat: 40.78, lng: -74}
+			// center: {lat: -10, lng: -10}
+		});
+
+		map.data.addGeoJson(data);
 
 
-// $(document).ready(function(){
-// 	console.log("Document ready");
-// 	$("#searchbar").keypress(function (enter) {
-// 		if enter.which == 13{
-// 			$('#searchbar').submit();
-//     		alert('you pressed enter')
-//     		return false;
-// 		};
-// 		// data = $("#searchbar");
-// 		// $.ajax({
-// 		// 	method:"POST",
-// 		// 	// url: "/tweet",
-// 		// 	data: data,
-// 		// 	success: function(response) {
-// 		// 		console.log(response);
-// 		// 	}
-// 		// });
-// 	});
-// });
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(function(position) {
+				var pos = {
+					lat: position.coords.latitude,
+					lng: position.coords.longitude
+				};
+
+			// infoWindow.setPosition(pos);
+			// infoWindow.setContent('Location found.');
+				map.setCenter(pos);
+		  	}, function() {
+				handleLocationError(true, infoWindow, map.getCenter());
+		  	});
+		} else {
+		  // Browser doesn't support Geolocation
+		  	handleLocationError(false, infoWindow, map.getCenter());
+		}
+
+		function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+			infoWindow.setPosition(pos);
+			infoWindow.setContent(browserHasGeolocation ?
+		  	'Error: The Geolocation service failed.' :
+		  	'Error: Your browser doesn\'t support geolocation.');
+		}
 
 
-
-//input submitted on 'enter'
-// $('.input').keypress(function (e) {
-//   if (e.which == 13) {
-//     $('search').submit();
-//     alert('search')
-//     return false;
-//   }
-// });
-import {IIFE} from './gmaps.js'
+	};
 
 
-document.getElementById('searchSub').addEventListener('click', function(event){
-		event.preventDefault();
-		console.log('click')
-		var name = document.querySelector('#searchInput').value
-
-		console.log(name);
-		var data =searchBar(name);
-		console.log(data)
-
-})
 
 const searchBar = function(name){
-	var data;
 	var url = '/procedure/'+name;	
 	var xhttp= new XMLHttpRequest();
 		xhttp.onreadystatechange=function(){
 			if(this.readyState==4 && this.status==200){
-				data = JSON.parse(this.responseText);
-				
+				console.log("we made it!")
+				var data = JSON.parse(this.responseText);
+				// console.log(data)
+				initMap(data);
+			
 			}
 
 			// var newData= data.split(',');
@@ -63,10 +64,22 @@ const searchBar = function(name){
 }
 
 
-var getMap = function(dataObj){
-	let map = IIFE()
+document.getElementById('searchSub').addEventListener('click', function(event){
+		event.preventDefault();
+		console.log('click')
+		var name = document.querySelector('#searchInput').value
 
-}
+		console.log(name);
+		var data =searchBar(name);
+		console.log(data);
+	});
+
+
+
+// var getMap = function(dataObj){
+// 	let map = IIFE();
+	
+// }
 
 
 

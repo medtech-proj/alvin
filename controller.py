@@ -9,40 +9,65 @@ app = Flask(__name__)
 #secret key assignment
 # app.config['SECRET_KEY'] = open('secret_key', "rb").read()
 
+#STATIC FUNCTIONS
+def get_geojson(data):
+	hospital=[]
+	geo_json = {'type':"FeatureCollection", "features":hospital}
+
+	for obj in data:
+		hospital.append(
+			{"geometry": 
+				{"type": "Point",
+				"coordinates": [obj["longitude"], obj['latitude']]
+				},
+			"id": str(obj['id']),
+			"properties": {
+				"marker-color": "#7e7e7e",
+				"marker-size": "medium",
+				"marker-symbol": ""
+				},
+				"type": "Feature"
+			})
+			
+
+
+	return geo_json
+	# geo_json['features'].append(obj)
+
+
+
 @app.route("/")
 def show_healthmap():
-	
 	# return render_template("healthmap.html")
 	return render_template("map.html")
 
 @app.route("/procedure/<name>")
-def get_hosp_name(name):
+def get_data(name):
 	data = search.get_procedure_info(name)
 	# return httpResponse(json.dumps(data))
 	# for _ in data:
-	for obj in data:
-		x = obj['name']
-		address = obj['address']
-		description = obj['description']
-		cpt_code = obj['cpt_code']
-		tot_price = obj['tot_price']
-		image = obj['image']
-		rating = obj['rating']
-		reviews = obj['reviews']
-		latitude = obj['latitude']
-		longitude = obj['longitude']
+	# for obj in data:
+	# 	x = obj['name']
+	# 	address = obj['address']
+	# 	description = obj['description']
+	# 	cpt_code = obj['cpt_code']
+	# 	tot_price = obj['tot_price']
+	# 	image = obj['image']
+	# 	rating = obj['rating']
+	# 	reviews = obj['reviews']
+	# 	latitude = obj['latitude']
+	# 	longitude = obj['longitude']
 
-
-
-
-		print(x)
+		# print(x)
 
 
 	# print(data[0]['name'])
 	# print(type(data))
-	result = {'result':str(data)}
+	geo_json=get_geojson(data)
+	return json.dumps(geo_json)
 
-	return json.dumps(result)
+
+
 
 
 
