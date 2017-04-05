@@ -1,0 +1,123 @@
+{
+  "type": "FeatureCollection",
+  "features": 
+  [
+
+
+
+  	
+	{
+	  "geometry": {
+		"type": "Point",
+		"coordinates": [
+		  -73.9539303,
+		  40.7643962
+		]
+	  },
+	  "id": "0",
+	  "properties": {
+		"marker-color": "#7e7e7e",
+		"marker-size": "medium",
+		"marker-symbol": "",
+		"name": "New York-Presbyterian Weill Cornell Medical Center",
+		"price": 128914
+	  },
+	  "type": "Feature"
+	},
+
+
+
+
+
+	{
+	  "geometry": {
+		"type": "Point",
+		"coordinates": [
+		  -73.9743355,
+		  40.74206969999999
+		]
+	  },
+	  "id": "1",
+	  "properties": {
+		"marker-color": "#7e7e7e",
+		"marker-size": "medium",
+		"marker-symbol": "",
+		"name": "NYU Langone Medical Center",
+		"price": 12453
+	  },
+	  "type": "Feature"
+	},
+	{
+	  "geometry": {
+		"type": "Point",
+		"coordinates": [
+		  -73.944981,
+		  40.7852248
+		]
+	  },
+	  "id": "2",
+	  "properties": {
+		"marker-color": "#7e7e7e",
+		"marker-size": "medium",
+		"marker-symbol": "",
+		"name": "NYC Health + Hospitals/Metropolitan",
+		"price": 91283
+	  },
+	  "type": "Feature"
+	},
+	{
+	  "geometry": {
+		"type": "Point",
+		"coordinates": [
+		  -73.9754976,
+		  40.739217
+		]
+	  },
+	  "id": "3",
+	  "properties": {
+		"marker-color": "#7e7e7e",
+		"marker-size": "medium",
+		"marker-symbol": "",
+		"name": "Bellevue Hospital Center",
+		"price": 198256
+	  },
+	  "type": "Feature"
+	},
+	{
+	  "geometry": {
+		"type": "Point",
+		"coordinates": [
+		  -73.9419849,
+		  40.8417567
+		]
+	  },
+	  "id": "4",
+	  "properties": {
+		"marker-color": "#7e7e7e",
+		"marker-size": "medium",
+		"marker-symbol": "",
+		"name": "New York Presbyterian Hospital",
+		"price": 198274
+	  },
+	  "type": "Feature"
+	},
+	{
+	  "geometry": {
+		"type": "Point",
+		"coordinates": [
+		  -73.9833282,
+		  40.7328953
+		]
+	  },
+	  "id": "5",
+	  "properties": {
+		"marker-color": "#7e7e7e",
+		"marker-size": "medium",
+		"marker-symbol": "",
+		"name": "Mount Sinai Beth Israel",
+		"price": 2936
+	  },
+	  "type": "Feature"
+	}
+  ]
+}
