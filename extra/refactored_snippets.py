@@ -1,3 +1,61 @@
+#STATIC FUNCTIONS in controller.py
+# def get_geojson(data):
+# 	hospital=[]
+# 	geo_json = {'type':"FeatureCollection", "features":hospital}
+
+# 	for obj in data:
+# 		hospital.append(
+# 			{"geometry": 
+# 				{"type": "Point",
+# 				"coordinates": [obj["longitude"], obj['latitude']]
+# 				},
+# 			"id": str(obj['id']),
+# 			# "properties": {
+# 			# 	"marker-color": "#7e7e7e",
+# 			# 	"marker-size": "medium",
+# 			# 	"marker-symbol": "",
+# 			# 	"object": "hi"
+# 			# 	},
+# 				"type": "Feature"
+# 			})
+			
+
+
+# 	return geo_json
+# 	# geo_json['features'].append(obj)
+
+
+@app.route("/procedure/<name>")
+def get_data(name):
+	# data = search.py function get_procedure_info passed in name to the SQL query
+	data = search.get_procedure_info(name)
+
+	# return httpResponse(json.dumps(data))
+	# for _ in data:
+	# for obj in data:
+	# 	x = obj['name']
+	# 	address = obj['address']
+	# 	description = obj['description']
+	# 	cpt_code = obj['cpt_code']
+	# 	tot_price = obj['tot_price']
+	# 	image = obj['image']
+	# 	rating = obj['rating']
+	# 	reviews = obj['reviews']
+	# 	latitude = obj['latitude']
+	# 	longitude = obj['longitude']
+
+		# print(x)
+
+
+	# print(data[0]['name'])
+	# print(type(data))
+	# geo_json=get_json_details(data)
+	
+	return json.dumps(data)
+	# this is the responseText on javascript
+
+
+
 joindb = select * from (SELECT * 
 FROM procedures 
 JOIN facilities 
