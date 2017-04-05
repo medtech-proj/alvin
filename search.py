@@ -23,7 +23,7 @@ def get_procedure_info(procedure):
 
 
 	# print(procedure)
-	data = str(procedure)+'%'
+	name = str(procedure)+'%'
 	cursor.execute('''
 		SELECT procedures.id, latitude, longitude, name, address, description, cpt_code, tot_price, image, rating, reviews
 		FROM procedures 
@@ -38,12 +38,12 @@ def get_procedure_info(procedure):
 		ON procedures.id_facilities = geolocations.id_facilities
 
 		WHERE procedure_types.description LIKE (%s);
-	''', (data,))
+	''', (name,))
 	# print(data)
 	query = cursor.fetchall()
 	# print(query)
 	return query
-	# return query
+	# returns a list of DICTS...
 	connection.close()
 
 # get_procedure_info('CT')

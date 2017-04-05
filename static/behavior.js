@@ -1,60 +1,58 @@
 var mapdiv= document.getElementById('map');
-
 function initMap(data) {
-console.log("data in init", data)
 	var map = new google.maps.Map(mapdiv, {
 		zoom: 12,
-		// center: {lat: 40.78, lng: -74}
-		center: new google.maps.LatLng(40.78,-74)
+		center: {lat: 40.78, lng: -74}
+		// center: new google.maps.LatLng(40.78,-74)
 	});
+	getGeoLoc(map)
+	if (data){
+		newMarker(data, map);
+	}
 
+};
 
-	// for as many data points returned from query:
-	// 	make an instance of InfoWindow
-	// 	make an instance of LatLng
-	// 	make an instance of Marker, with given position, map, and details
+/*for as many data points returned from query:
+	 make an instance of InfoWindow
+	 make an instance of LatLng
+	 make an instance of Marker, with given position, map, and details
+*/
+function newMarker(data, map){
+	var infoWindow = new google.maps.InfoWindow();
 
 	for (var i = 0; i<data.length; i++) {
 		var facility= data[i];
 		
-		var infoWindow = new google.maps.InfoWindow();
 		var latLng = new google.maps.LatLng(facility['latitude'], facility['longitude']);
-		
-		// console.log(facility, "in for loop");
-		// console.log(latLng);
-	
 
-		var marker = new google.maps.Marker({
-			position: latLng,
-			map: map
-		});
-		// console.log(marker);
-
-		// Attaching a click event + listener to the current marker
-		google.maps.event.addListener(marker, "click", function(e) {
-	 			infoWindow.setContent(data[i]);
-	 			console.log(data[i])
-	 			console.log(infoWindow.setContent(data[i]));
-				infoWindow.open(map, marker);
-		});
-
-		// Creating a closure to retain the correct data 
-		//Note how I pass the current data in the loop into the closure (marker, data)
-		(function(marker, data) {
-
-		// Attaching a click event to the current marker
-			google.maps.event.addListener(marker, "click", function(e) {
-				infoWindow.setContent(data[i]);
-				infoWindow.open(map, marker);
-			});
-
-		})(marker, data);
+		var marker = new google.maps.Marker(
+			{
+				position: latLng,
+				map: map
+			}
+		);
+		eventListener(infoWindow, marker, facility, map);
 	}
+};
+
+// Attaching a click event listener to the current marker
+function eventListener(infoWindow, marker, facility, map){
+	google.maps.event.addListener(marker, "click", function(e) {
+		console.log(facility.name)
+		 var content = '<div><strong>' + facility.name + '</strong><br>'
+               + facility.address + '<br>' + 'Cpt code: ' + facility.cpt_code + '</br>' + 'Price: $' +
+               facility.tot_price + '<br>' + 'Description: ' + facility.description + '</div>';
+        infoWindow.setContent(content);
+		infoWindow.open(map, marker);
+	});
+
+}
 
 
 
-// gets geo-location///////////////////////////////// 
 
+// gets geo-location
+function getGeoLoc(map){
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(position) {
 			var pos = {
@@ -80,8 +78,8 @@ console.log("data in init", data)
 	  	'Error: Your browser doesn\'t support geolocation.');
 	}
 
-
 };
+
 
 
 document.getElementById('searchSub').addEventListener('click', function(event){
@@ -102,7 +100,7 @@ const searchBar = function(name){
 	var xhttp= new XMLHttpRequest();
 	xhttp.onreadystatechange=function(){
 		if(this.readyState==4 && this.status==200){
-			//this.responseText = get_data(name) response = json.dumps(data) from db query
+			//this.responseText = get_data(name) response = json.dumps(data) from db query. turns .dumps string into an obj.
 			var array_obj = JSON.parse(this.responseText);
 			console.log("in searchBar", array_obj)
 			//passes array_obj into initMap() as data
