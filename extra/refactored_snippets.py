@@ -1,3 +1,9 @@
+		// google.maps.event.addListener(marker, "click", function(e) {
+		// infoWindow.setContent(data[i]);
+		// infoWindow.open(map, marker);
+		// })
+
+
 #STATIC FUNCTIONS in controller.py
 # def get_geojson(data):
 # 	hospital=[]

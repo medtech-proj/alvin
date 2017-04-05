@@ -2,8 +2,8 @@ var mapdiv= document.getElementById('map');
 function initMap(data) {
 	var map = new google.maps.Map(mapdiv, {
 		zoom: 12,
-		// center: {lat: 40.78, lng: -74}
-		center: new google.maps.LatLng(40.78,-74)
+		center: {lat: 40.78, lng: -74}
+		// center: new google.maps.LatLng(40.78,-74)
 	});
 	getGeoLoc(map)
 	if (data){
@@ -39,8 +39,10 @@ function newMarker(data, map){
 function eventListener(infoWindow, marker, facility, map){
 	google.maps.event.addListener(marker, "click", function(e) {
 		console.log(facility.name)
-		// var content=
-		infoWindow.setContent(facility.address);
+		 var content = '<div><strong>' + facility.name + '</strong><br>'
+               + facility.address + '<br>' + 'Cpt code: ' + facility.cpt_code + '</br>' + 'Price: $' +
+               facility.tot_price + '<br>' + 'Description: ' + facility.description + '</div>';
+        infoWindow.setContent(content);
 		infoWindow.open(map, marker);
 	});
 
