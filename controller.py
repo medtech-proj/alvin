@@ -18,29 +18,7 @@ def get_data(name):
 	data = search.get_procedure_info(name)
 	
 	return json.dumps(data)
-	# returns data formated to json, to be parsed in the JS file as the this.responseText. it is an array of objects.
-
-
-#STATIC FUNCTIONS
-# def get_json_details(data):
-# 	print(data)
-# 	details = []
-# 	for i in data:
-# 		details.append(
-# 			{"name":i['name'],
-# 			"lng": i["longitude"],
-# 			"lat": i["latitude"],
-# 			"price": i["tot_price"],
-# 			"address": i['address'],
-# 			"description":i['description'],
-# 			"cpt_code":i['cpt_code'],
-# 			"image":i['image'],
-# 			"rating":i['rating'],
-# 			"reviews":i['reviews']
-# 			}
-# 		)
-# 	return details
-
+	# returns data formated to string to pass into http request, to be parsed into a JSON obj in the JS file as the this.responseText.
 
 
 if __name__ == "__main__":
