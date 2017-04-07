@@ -1,8 +1,11 @@
 from flask import Flask, redirect, render_template, session, request, url_for
 import search
 import json
+from flask.ext.heroku import Heroku
 
 app = Flask(__name__)
+
+heroku = Heroku(app)
 
 #secret key assignment
 # app.config['SECRET_KEY'] = open('secret_key', "rb").read()
