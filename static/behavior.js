@@ -82,15 +82,25 @@ function getGeoLoc(map){
 
 
 
-document.getElementById('searchSub').addEventListener('click', function(event){
+document.getElementById('searchInput').addEventListener('keyup', function(event){
+	//if "enter"
+		if(event.keyCode===13){
 	//prevent page refresh
-		event.preventDefault();
-		console.log('click')
-		//form value stored as var name and passed to searchBar()
-		var name = document.querySelector('#searchInput').value
+			event.preventDefault();
+			console.log('click')
+			//form value stored as var name and passed to conditional
+			var name = document.querySelector('#searchInput').value
+			
+			//filtering cpt codes being passed into search
+			var regex= /^[0-9]+$/;
 
-		console.log(name);
-		searchBar(name);
+			var check = regex.test(name); //returns bool
+			if (check) {
+				cptSearch(name);
+			} else {
+				searchBar(name);
+			}
+		}
 	});
 
 
@@ -113,6 +123,27 @@ const searchBar = function(name){
 	xhttp.send()
 }
 
+
+
+
+const cptSearch = function(num){
+	//goes to route ('/procedure/<name>') in controller.py and runs get_data(name)
+	var url = '/cpt/'+num;	
+	var xhttp= new XMLHttpRequest();
+	xhttp.onreadystatechange=function(){
+		if(this.readyState==4 && this.status==200){
+			//this.responseText = get_data(name) response = json.dumps(data) from db query. turns .dumps string into an obj.
+			var array_obj = JSON.parse(this.responseText);
+			console.log("in cptSearch", array_obj)
+			//passes array_obj into initMap() as data
+			initMap(array_obj);
+		}
+		// var newData= data.split(',');
+		// console.log(newData);
+	};
+	xhttp.open("GET", url, true);
+	xhttp.send()
+}
 
 
 
