@@ -1,8 +1,10 @@
 var mapdiv= document.getElementById('map');
 function initMap(data) {
+	// var zoom = input val 
 	var map = new google.maps.Map(mapdiv, {
-		zoom: 12,
-		center: {lat: 40.78, lng: -74}
+		zoom: 4,
+		center: {lat: 40, lng: -98}
+		// center: {lat: 40.78, lng: -74}
 		// center: new google.maps.LatLng(40.78,-74)
 	});
 	getGeoLoc(map)
@@ -11,6 +13,22 @@ function initMap(data) {
 	}
 
 };
+//ZOOM 4 = US, 12 = nyc
+
+
+////////   radius code snippet unchecked   //////
+// var myLatLng = new google.maps.LatLng(35.265,-80.326);
+// var circleOptions = {
+//     center: myLatLng,
+//     fillOpacity: 0,
+//     strokeOpacity:0,
+//     map: myMapObject,
+//     radius: 32186 /* 20 miles */
+// }
+// var myCircle = new google.maps.Circle(circleOptions);
+// myMap.fitBounds(myCircle.getBounds());
+
+
 
 /*for as many data points returned from query:
 	 make an instance of InfoWindow
@@ -35,6 +53,8 @@ function newMarker(data, map){
 	}
 };
 
+
+
 // Attaching a click event listener to the current marker
 function eventListener(infoWindow, marker, facility, map){
 	google.maps.event.addListener(marker, "click", function(e) {
@@ -51,7 +71,7 @@ function eventListener(infoWindow, marker, facility, map){
 
 
 
-// gets geo-location
+/////// gets geo-location from user ip  //////
 function getGeoLoc(map){
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(position) {
@@ -82,27 +102,39 @@ function getGeoLoc(map){
 
 
 
-document.getElementById('searchSub').addEventListener('click', function(event){
+//////  gets input from search bar   ///////////
+document.getElementById('searchbar').addEventListener('submit', function(event){
+	//if "enter"
+		// if(event.keyCode===13){
 	//prevent page refresh
-		event.preventDefault();
-		console.log('click')
-		//form value stored as var name and passed to searchBar()
-		var name = document.querySelector('#searchInput').value
+			event.preventDefault();
+			console.log('click')
+			//form value stored as var name and passed to conditional
+			var name = document.querySelector('#searchInput').value
+			console.log(name)
+			//filtering cpt codes being passed into search
+			var regex= /^[0-9]+$/;
 
-		console.log(name);
-		searchBar(name);
+			var check = regex.test(name); //returns bool
+			if (check) {
+				cptSearch(name);
+			} else {
+				searchBar(name);
+			}
+		// }
 	});
 
 
-const searchBar = function(name){
-	//goes to route ('/procedure/<name>') in controller.py and runs get_data(name)
-	var url = '/procedure/'+name;	
+/////////  get info by CPT search  /////////
+const cptSearch = function(num){
+	//goes to route ('/cpt/<nnum>') in controller.py and runs get_code(num)
+	var url = '/cpt/'+num;	
 	var xhttp= new XMLHttpRequest();
 	xhttp.onreadystatechange=function(){
 		if(this.readyState==4 && this.status==200){
 			//this.responseText = get_data(name) response = json.dumps(data) from db query. turns .dumps string into an obj.
 			var array_obj = JSON.parse(this.responseText);
-			console.log("in searchBar", array_obj)
+			console.log("in cptSearch", array_obj)
 			//passes array_obj into initMap() as data
 			initMap(array_obj);
 		}
@@ -115,8 +147,31 @@ const searchBar = function(name){
 
 
 
+/////////  get info by keyword search  /////////
+const searchBar = function(name){
+	//goes to route ('/procedure/<name>') in controller.py and runs get_data(name)
 
-
+	var name = name.replace('/', '+');
+	console.log(name);
+	var url = '/procedure/'+name;	
+	var xhttp= new XMLHttpRequest();
+	xhttp.onreadystatechange=function(){
+		if(this.readyState==4 && this.status==200){
+			//this.responseText = get_data(name) response = json.dumps(data) from db query. turns .dumps string into an obj.
+			var array_obj = JSON.parse(this.responseText);
+			console.log("in searchBar", array_obj)
+			//passes array_obj into initMap() as data
+			initMap(array_obj);
+		}
+		else{
+			console.log('bad response')
+		}
+		// var newData= data.split(',');
+		// console.log(newData);
+	};
+	xhttp.open("GET", url, true);
+	xhttp.send()
+}
 
 
 
