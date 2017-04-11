@@ -35,9 +35,12 @@ def get_procedure_info(procedure):
 		ON procedures.id_facilities = facilities.id
 
 		JOIN geolocations
-		ON procedures.id_facilities = geolocations.id_facilities
+		ON procedures.id_facilities = geolocations.id_facilities 
 
 		WHERE procedure_types.description LIKE (%s);
+
+
+
 	''', (name,))
 	# print(data)
 	query = cursor.fetchall()
@@ -45,6 +48,7 @@ def get_procedure_info(procedure):
 	return query
 	# return query
 	connection.close()
+
 
 # get_procedure_info('CT')
 

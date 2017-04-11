@@ -42,7 +42,10 @@ function initMap(data) {
 	console.log("data in init", typeof(data))
 	console.log(data)
 	var map = new google.maps.Map(mapdiv, {
-		zoom: 12,
+		// zoom: 12,
+		zoom: 8,
+
+		// radius: 146093,
 		// center: {lat: 40.78, lng: -74}
 		center: new google.maps.LatLng(40.78,-74)
 	});
