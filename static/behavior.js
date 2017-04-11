@@ -103,15 +103,15 @@ function getGeoLoc(map){
 
 
 //////  gets input from search bar   ///////////
-document.getElementById('searchInput').addEventListener('keyup', function(event){
+document.getElementById('searchbar').addEventListener('submit', function(event){
 	//if "enter"
-		if(event.keyCode===13){
+		// if(event.keyCode===13){
 	//prevent page refresh
 			event.preventDefault();
 			console.log('click')
 			//form value stored as var name and passed to conditional
 			var name = document.querySelector('#searchInput').value
-			
+			console.log(name)
 			//filtering cpt codes being passed into search
 			var regex= /^[0-9]+$/;
 
@@ -121,7 +121,7 @@ document.getElementById('searchInput').addEventListener('keyup', function(event)
 			} else {
 				searchBar(name);
 			}
-		}
+		// }
 	});
 
 
@@ -150,6 +150,9 @@ const cptSearch = function(num){
 /////////  get info by keyword search  /////////
 const searchBar = function(name){
 	//goes to route ('/procedure/<name>') in controller.py and runs get_data(name)
+
+	var name = name.replace('/', '+');
+	console.log(name);
 	var url = '/procedure/'+name;	
 	var xhttp= new XMLHttpRequest();
 	xhttp.onreadystatechange=function(){
@@ -159,6 +162,9 @@ const searchBar = function(name){
 			console.log("in searchBar", array_obj)
 			//passes array_obj into initMap() as data
 			initMap(array_obj);
+		}
+		else{
+			console.log('bad response')
 		}
 		// var newData= data.split(',');
 		// console.log(newData);

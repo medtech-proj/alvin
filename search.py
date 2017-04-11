@@ -19,7 +19,7 @@ def get_procedure_info(procedure):
 
 # search =  "CT Head W W/O Contrast"
 	# print(procedure)
-	name = str(procedure).upper()+'%'
+	name = str(procedure)
 	print(name)
 	cursor.execute('''
 		SELECT procedures.id, latitude, longitude, name, address, description, cpt_code, tot_price, image, rating, reviews
@@ -34,12 +34,12 @@ def get_procedure_info(procedure):
 		JOIN geolocations
 		ON procedures.id_facilities = geolocations.id_facilities
 
-		WHERE procedure_types.description LIKE (%s);
+		WHERE procedure_types.description = (%s);
 
 	''', (name,))
-	# print(data)
+	# print(name)
 	query = cursor.fetchall()
-
+	# print(query)
 	return query
 	# returns a list of DICTS...
 	connection.close()

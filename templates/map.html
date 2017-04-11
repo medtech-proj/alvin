@@ -2,11 +2,11 @@
 {% block dynamic %}
 <div class='container'>
 	<div class="inputDiv">
-	<!-- <form id="searchbar" method="GET"> -->
-		<input type="text" name="search" placeholder="Search for Procedure or CPT code..." id="searchInput" autofocus>
+	<form id="searchbar">
+		<input type="text" name="search" placeholder="Search for Procedure or CPT code..." id="searchInput" autofocus class="awesomplete" data-minchars="1" data-maxitems="5" data-list="CT Head W W/O Contrast, MRI Brain W W/O Contrast, X-Ray Ankle 3 views, Total Knee Arthroplasty" />
+		<input type="submit" id="searchSub" value="Submit">
+	</form>
 	</div>
-<!-- 	<input type="submit" id="searchSub" value="Submit"> -->
-<!-- </form> -->
 
 
 <!-- <form id="mc4wp-form-1" class="mc4wp-form mc4wp-form-4702" method="post" data-id="4702" data-name="Sign Up for Free Weekly Healthcare Tips and News!"><div class="mc4wp-form-fields"><p class="subscribe-email-row">
@@ -16,7 +16,7 @@
     
     <div id="map">
 
-    </div>
+ 	</div>
 
 </div>
 {% endblock %}
