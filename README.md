@@ -4,7 +4,7 @@
 
 ### This is a proof of concept mockup created for Alvin Healthcare.
 
-** Check it out at medicalmap.us **
+**Check it out at medicalmap.us**
 
 This mockup was created with dummy data as public medical pricing is hard to find. The backend database (PostgreSQL) is ready to scale and could easily handle incoming information.
 
@@ -23,6 +23,8 @@ As this mockup was created for Alvin Health, the headers and footers are theirs.
 Google Maps API was used for the display.
 
 PostgreSQL stores the data.
+
+The web app is served on Digital Ocean using Ubuntu and Apache.
 
 
 
