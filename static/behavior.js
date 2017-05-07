@@ -2,9 +2,9 @@ var mapdiv= document.getElementById('map');
 function initMap(data) {
 	// var zoom = input val 
 	var map = new google.maps.Map(mapdiv, {
-		zoom: 4,
-		center: {lat: 40, lng: -98}
-		// center: {lat: 40.78, lng: -74}
+		zoom: 12,
+		// center: {lat: 40, lng: -98}
+		center: {lat: 40.78, lng: -74}
 		// center: new google.maps.LatLng(40.78,-74)
 	});
 	getGeoLoc(map)
@@ -40,13 +40,15 @@ function newMarker(data, map){
 
 	for (var i = 0; i<data.length; i++) {
 		var facility= data[i];
-		
+		var price=facility['tot_price']
+
 		var latLng = new google.maps.LatLng(facility['latitude'], facility['longitude']);
 
 		var marker = new google.maps.Marker(
 			{
 				position: latLng,
-				map: map
+				map: map,
+				labelContent: price
 			}
 		);
 		eventListener(infoWindow, marker, facility, map);
@@ -60,8 +62,8 @@ function eventListener(infoWindow, marker, facility, map){
 	google.maps.event.addListener(marker, "click", function(e) {
 		console.log(facility.name)
 		 var content = '<div><strong>' + facility.name + '</strong><br>'
-               + facility.address + '<br>' + 'Cpt code: ' + facility.cpt_code + '</br>' + 'Price: $' +
-               facility.tot_price + '<br>' + 'Description: ' + facility.description + '</div>';
+               + facility.address + '<br><br><strong>' + facility.description + '</strong><br>' + 'CPT code: ' + facility.cpt_code + '</br>' + 'Price: $' +
+               facility.tot_price + '</div>';
         infoWindow.setContent(content);
 		infoWindow.open(map, marker);
 	});
@@ -108,10 +110,10 @@ document.getElementById('searchbar').addEventListener('submit', function(event){
 		// if(event.keyCode===13){
 	//prevent page refresh
 			event.preventDefault();
-			console.log('click')
+			// console.log('click')
 			//form value stored as var name and passed to conditional
 			var name = document.querySelector('#searchInput').value
-			console.log(name)
+			// console.log(name)
 			//filtering cpt codes being passed into search
 			var regex= /^[0-9]+$/;
 
@@ -127,14 +129,14 @@ document.getElementById('searchbar').addEventListener('submit', function(event){
 
 /////////  get info by CPT search  /////////
 const cptSearch = function(num){
-	//goes to route ('/cpt/<nnum>') in controller.py and runs get_code(num)
+	//goes to route ('/cpt/<num>') in controller.py and runs get_code(num)
 	var url = '/cpt/'+num;	
 	var xhttp= new XMLHttpRequest();
 	xhttp.onreadystatechange=function(){
 		if(this.readyState==4 && this.status==200){
 			//this.responseText = get_data(name) response = json.dumps(data) from db query. turns .dumps string into an obj.
 			var array_obj = JSON.parse(this.responseText);
-			console.log("in cptSearch", array_obj)
+			// console.log("in cptSearch", array_obj)
 			//passes array_obj into initMap() as data
 			initMap(array_obj);
 		}
@@ -142,7 +144,7 @@ const cptSearch = function(num){
 		// console.log(newData);
 	};
 	xhttp.open("GET", url, true);
-	xhttp.send()
+	xhttp.send();
 }
 
 
@@ -152,20 +154,20 @@ const searchBar = function(name){
 	//goes to route ('/procedure/<name>') in controller.py and runs get_data(name)
 
 	var name = name.replace('/', '+');
-	console.log(name);
+	// console.log(name);
 	var url = '/procedure/'+name;	
 	var xhttp= new XMLHttpRequest();
 	xhttp.onreadystatechange=function(){
 		if(this.readyState==4 && this.status==200){
 			//this.responseText = get_data(name) response = json.dumps(data) from db query. turns .dumps string into an obj.
 			var array_obj = JSON.parse(this.responseText);
-			console.log("in searchBar", array_obj)
+			// console.log("in searchBar", array_obj)
 			//passes array_obj into initMap() as data
 			initMap(array_obj);
 		}
-		else{
-			console.log('bad response')
-		}
+		// else{
+		// 	console.log('bad response')
+		// }
 		// var newData= data.split(',');
 		// console.log(newData);
 	};

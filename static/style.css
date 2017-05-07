@@ -1,32 +1,33 @@
 /*body{
-	border:solid pink;
+    border:solid pink;
 }
 
 #menu-alvin-main-menu{
-	display:flex;
+    display:flex;
 }
 
 .inner{
-	background-color: gray;
-	color:white;
+    background-color: gray;
+    color:white;
 }
 
 ul{
-	list-style: none;
+    list-style: none;
 }
 li{
-	margin:1%;
+    margin:1%;
 }*/
-.inputDiv{
-	width:100;
-	display: flex;
-	justify-content: center;
 
-	/*border:red solid;*/
+.inputDiv{
+    width:100;
+    display: flex;
+    justify-content: center;
+
+    /*border:red solid;*/
 }
 
 .awesomplete{
-	width: 100%;
+    width: 100%;
 }
 
 .inputDiv input {
@@ -40,15 +41,18 @@ li{
     transition: width 0.4s ease-in-out;*/
 }
 
-
-
-#map{
-	height: 400px;
-	width: 100%;
-	margin: auto;
-	margin-bottom: 10px;
+mark{
+    background-color:#a3ccff !important;
+    padding:0;
+    margin:0;
 }
 
+#map{
+    height: 400px;
+    width: 100%;
+    margin: auto;
+    margin-bottom: 10px;
+}
 
 
 /* When the input field gets focus, change its width to 100% */
