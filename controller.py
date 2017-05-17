@@ -32,5 +32,26 @@ def get_code(num):
 	# returns data formated to string to pass into http request, to be parsed into a JSON obj in the JS file as the this.responseText.
 
 
+# menu item routes
+@app.route("/how_it_works")
+def how_it_works():
+	return render_template("how_it_works.html")
+
+@app.route("/get_started")
+def get_started():
+	return render_template("get_started.html")
+
+@app.route("/about_alvin")
+def about():
+	return render_template("about_alvin.html")
+
+@app.route("/sign_in")
+def sign_in():
+	return render_template("sign_in.html")
+
+@app.route("/contact")
+def contact():
+	return render_template("contact.html")
+
 if __name__ == "__main__":
 	app.run(host="127.0.0.1", debug=True, port=5000)

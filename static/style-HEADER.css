@@ -176,7 +176,7 @@ nav .menu {
   margin-top:0
 }
 nav .menu li {
-  float:left;
+  float:none;
   position:relative;
   height:100%;
 }
@@ -785,7 +785,7 @@ box-sizing: border-box;max-width:217px;}
 .header_tools .cart .cart_item:first-child .remove:after{top:0px;}
 
 
-.header_tools .extra_navigation_button{font-size:20px !important; float:left;}
+.header_tools .extra_navigation_button{font-size:20px !important; float:none;}
 .right_search_container{display:none;}
 
 

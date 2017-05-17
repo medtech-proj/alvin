@@ -16,10 +16,41 @@ ul{
 }
 li{
     margin:1%;
-}*/
+}
+
+*/
+
+.top_nav .widget_text {
+    padding-left: 15px !important;
+    padding-top: 10px !important;
+}
+
+#logo {
+    margin-right: 40px;
+}
+
+.btn-box{
+    margin-right: 20px;
+}
+
+nav .menu {
+    padding: none;
+}
+
+nav .menu li:first-child {
+    margin-left: 10px;
+}
+
+nav .menu > li {
+    padding-right: 45px;
+}
+
+.header_right_tools{
+    top: 50%;
+}
 
 .inputDiv{
-    width:100;
+    width:100%;
     display: flex;
     justify-content: center;
 
@@ -52,6 +83,10 @@ mark{
     width: 100%;
     margin: auto;
     margin-bottom: 10px;
+}
+
+.glyf-btn{
+    margin-right: 100px;
 }
 
 
