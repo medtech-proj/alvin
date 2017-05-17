@@ -1,0 +1,49 @@
+{% extends "alvin.html" %}
+{% block dynamic %}
+
+<div class='container'>
+	<h1>Get Started</h1>
+	<h3>What's in the database:</h3>
+	<h4>4 Relational Tables:</h4>
+		<ul>
+			<li>Facilities and Addresses</li>
+			<li>Geolocations of Facilities
+			<li>Procedures and Descriptions</li>
+			<li>Pricing of Procedures at Facilities</li>
+		</ul>
+
+		<p> We currently have very limited data in the database because finding public medical pricing data is nearly impossible.<br>
+		That being said, we seeded our database with 8 total facilities and their current locations, most of which are in Manhattan.<br>
+		If you are using this map outside of NYC, do not turn accept the google maps location prompt, you will likely not see any facilities near you.<br><br>
+
+		We have a total of 4 medical procedures that can be searched.<br>
+		You may start typing in the search bar, and it will populate with any matches in the database.<br>
+		To be precise, these are the procedures and their CPT (current procedure terminology) codes that are in the database:<br>
+		<ul>
+			<li>CT Head W W/O Contrast, 70470</li>
+			<li>MRI Brain W W/O Contrast, 70553</li>
+			<li>X-Ray Ankle 3 views, 73610</li>
+			<li>Total Knee Arthroplasty, 71005</li>
+		</ul>
+		Upon clicking each marker that displays, you may notice that the pricing data for these procedures seem very expensive. Our intention for this project is just to display a place holder for the price of the procedure at that specific location. Our application and database is ready to scale and will be much more powerful when given accurate data.<br><br>
+		</p>
+	<h3>Looking Ahead</h3>
+		<h4>Future features that we would like to incorporate into the application include:</h4>
+		<ul>
+			<li>Markers that display the price, without having to click to open</li>
+			<li>Additional search filters: price, distance/radius, facility rating</li>
+			<li>Ability for users to log in and save their searches</li>
+			<li>More data</li>
+		</ul><br><br>
+
+</div>
+
+{% endblock %}
+
+
+
+<!-- how it works = techs used
+get started = whats in the database - what to search
+about alvin = our description and actual link from there to alvin
+sign in = same as about alvin?
+contact = links to page about us -->

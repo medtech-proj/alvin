@@ -1,0 +1,25 @@
+{% extends "alvin.html" %}
+{% block dynamic %}
+
+<div class='container'>
+	<h1>How it Works</h1>
+	<h3>Backend</h3>
+		<p>MedicalMap.us is hosted with Digital Ocean, a cloud infrustructure provider. We are using Ubuntu, a Linux based operating system, and set it up with Apache, the web server. This means our application is ready to scale.<br><br>
+		We used PostgreSQL for our database with the intention of using it to store images in the future. It is an object relational database that uses the standard Structured Query Language, SQL.<br><br>
+		We used the 'lightweight Python web framework' Flask to route our pages, and as such, our controller is written in Python.<br><br>
+		<b>All this constitutes a LAPP stack: Linux, Apache, PostgreSQL, and Python.</b><br><br>
+		Additionally, we used the Google Maps API to display the map as it is the most familiar for users.</p>
+	<h3>Frontend</h3>
+		<p>As this project was created for Alvin Healthcare, the headers and footers are theirs, and we did little to design those. However we used HTML, CSS, and Javascript to display and format the map, as well as the markers on the map. We also used Javascript to make AJAX resquests to update the map, and to manipulate returned JSON objects.</p><br><br>
+</div>
+
+{% endblock %}
+
+
+
+<!-- how it works = techs used
+get started = whats in the database - what to search
+about alvin = our description and actual link from there to alvin
+sign in = same as about alvin?
+contact = links to page about us -->
+
